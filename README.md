@@ -1,6 +1,6 @@
 # 🎲 Axelrod's Iterated Prisoner's Dilemma (IPD)
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-View_Here-brightgreen?style=for-the-badge)]([https://sssplash6.github.io/Axelrod-s-Iterated-Prisoner-s-Dilemma-IPD-/](https://axelrod-s-iterated-prisoner-s-dilemma-ipd-q3r6-psf3mnzqj.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-View_Here-brightgreen?style=for-the-badge)]([https://sssplash6.github.io/Axelrod-s-Iterated-Prisoner-s-Dilemma-IPD-/]
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?logo=python)
