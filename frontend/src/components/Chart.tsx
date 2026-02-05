@@ -55,8 +55,8 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
             <circle cx="80" cy="60" r="4" fill="#cbd5e0" />
             <circle cx="95" cy="30" r="4" fill="#cbd5e0" />
           </svg>
-          <h3>No Simulation Results</h3>
-          <p>Run a simulation to see the results visualized here</p>
+          <h3>no simulation results</h3>
+          <p>run a simulation to see the results visualized here!</p>
         </div>
       </div>
     );
