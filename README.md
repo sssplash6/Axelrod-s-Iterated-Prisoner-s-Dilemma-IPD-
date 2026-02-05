@@ -10,7 +10,7 @@
 
 An interactive web simulator for the **Iterated Prisoner's Dilemma (IPD)**, a foundational concept in game theory. This project allows users to explore how cooperation can evolve among self-interested agents by pitting various strategies against each other.
 
-The simulator is inspired by political scientist Robert Axelrod's famous tournaments and Nicky Case's modern classic, [**The Evolution of Trust**](https://ncase.me/trust/).
+The simulator is inspired by political scientist Robert Axelrod's famous tournaments.
 
 ## 🌟 Features
 
@@ -118,7 +118,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🙏 Acknowledgments
 
-- Inspired by Nicky Case's ["The Evolution of Trust"](https://ncase.me/trust/)
 - Based on Robert Axelrod's groundbreaking research on cooperation
 - Game theory concepts from John Nash, John Maynard Smith, and others
 
