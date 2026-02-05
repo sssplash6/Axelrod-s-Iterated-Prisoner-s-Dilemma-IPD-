@@ -17,14 +17,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch available strategies on mount
   useEffect(() => {
     const fetchStrategies = async () => {
       try {
         const fetchedStrategies = await api.getStrategies();
         setStrategies(fetchedStrategies);
         
-        // Set default strategies
         if (fetchedStrategies.length >= 2) {
           setRequest((prev) => ({
             ...prev,
