@@ -33,7 +33,7 @@ function App() {
           }));
         }
       } catch (err) {
-        setError('Failed to load strategies. Please make sure the backend is running.');
+        setError('Failed to load strategies. Please email me at samandarinnie@gmail.com so that I can fix the issue');
         console.error('Error fetching strategies:', err);
       }
     };
@@ -106,7 +106,7 @@ function App() {
 
       <footer className="app-footer">
         <p>
-          Built with React, TypeScript, FastAPI, and Chart.js by <a href="https://github.com/sssplash6" className="footer-link">sant1x</a>
+          with React, TypeScript, FastAPI, and Chart.js by <a href="https://github.com/sssplash6" className="footer-link">sant1x</a>
           <br />
           <a 
             href="https://github.com/sssplash6/Axelrod-s-Iterated-Prisoner-s-Dilemma-IPD-" 
