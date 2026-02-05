@@ -1,7 +1,3 @@
-"""
-FastAPI backend for Evolution of Cooperation Simulator.
-Provides API endpoint for running Prisoner's Dilemma simulations.
-"""
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,15 +9,15 @@ from game_logic import PrisonersDilemmaGame, STRATEGIES, get_available_strategie
 
 
 app = FastAPI(
-    title="Evolution of Cooperation Simulator API",
+    title="Axelrod's Iterated Prisoner's Dilemma API",
     description="API for simulating repeated Prisoner's Dilemma games",
     version="1.0.0"
 )
 
-# Configure CORS
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify your frontend URL
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -96,27 +92,18 @@ async def get_strategies():
 
 @app.post("/api/simulate", response_model=SimulationResponse)
 async def simulate(request: SimulationRequest):
-    """
-    Run a Prisoner's Dilemma simulation between two strategies.
-    
-    Args:
-        request: Simulation parameters
-        
-    Returns:
-        Simulation results including round-by-round history
-    """
     try:
-        # Get strategy instances
+
         strategy1 = STRATEGIES[request.strategy1]
         strategy2 = STRATEGIES[request.strategy2]
         
-        # Create game instance
+
         game = PrisonersDilemmaGame(strategy1, strategy2, request.noise)
         
-        # Run simulation
+
         results = game.simulate(request.rounds)
         
-        # Return response
+
         return {
             "metadata": request.dict(),
             "results": results
@@ -130,7 +117,6 @@ async def simulate(request: SimulationRequest):
 
 @app.get("/health")
 async def health_check():
-    """Health check endpoint."""
     return {"status": "healthy"}
 
 
