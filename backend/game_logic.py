@@ -1,16 +1,9 @@
-"""
-Core game logic for the Evolution of Cooperation Simulator.
-Implements the repeated Prisoner's Dilemma with various strategies.
-This file has been updated to include 15+ strategies.
-"""
-
 from typing import List, Tuple, Dict
 import random
 from abc import ABC, abstractmethod
 
 
 class Strategy(ABC):
-    """Abstract base class for all strategies."""
     
     def __init__(self):
         self.name = self.__class__.__name__
@@ -18,16 +11,7 @@ class Strategy(ABC):
         
     @abstractmethod
     def decide(self, opponent_history: List[str], own_history: List[str]) -> str:
-        """
-        Decide whether to cooperate or defect.
-        
-        Args:
-            opponent_history: List of opponent's previous moves ("Cooperate" or "Defect")
-            own_history: List of own previous moves ("Cooperate" or "Defect")
-            
-        Returns:
-            "Cooperate" or "Defect"
-        """
+
         pass
     
     def reset(self):
@@ -72,10 +56,7 @@ class TitForTat(Strategy):
 
 
 class GrimTrigger(Strategy):
-    """
-    Cooperates until opponent defects once, then defects forever.
-    The unforgiving strategy.
-    """
+
     
     def __init__(self):
         super().__init__()
@@ -97,10 +78,7 @@ class GrimTrigger(Strategy):
 
 
 class Pavlov(Strategy):
-    """
-    Win-Stay, Lose-Shift strategy.
-    Repeats successful moves, changes unsuccessful ones.
-    """
+
     def __init__(self):
         super().__init__()
         self.description = "Win-Stay, Lose-Shift - repeats successful moves, changes unsuccessful ones"
@@ -116,7 +94,6 @@ class Pavlov(Strategy):
         
 
 class Random(Strategy):
-    """Randomly cooperates or defects with 50% probability."""
     def __init__(self):
         super().__init__()
         self.description = "Randomly cooperates or defects with 50% probability each"
@@ -126,10 +103,7 @@ class Random(Strategy):
 
 
 class Grudger(Strategy):
-    """
-    Similar to GrimTrigger. Cooperates until opponent defects,
-    then defects for the rest of the game.
-    """
+
     
     def __init__(self):
         super().__init__()
@@ -148,8 +122,6 @@ class Grudger(Strategy):
     
     def reset(self):
         self.grudge = False
-
-# ========== NEW STRATEGIES FROM game_logic.py ==========
 
 class TitForTwoTats(Strategy):
     def __init__(self):
@@ -283,7 +255,6 @@ class HardMajority(Strategy):
         return "Cooperate" if coop_count > defect_count else "Defect"
 
 
-# Strategy registry
 STRATEGIES: Dict[str, Strategy] = {
     "AlwaysCooperate": AlwaysCooperate(),
     "AlwaysDefect": AlwaysDefect(),
