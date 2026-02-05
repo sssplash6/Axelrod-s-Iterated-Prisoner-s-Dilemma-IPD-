@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -111,7 +111,7 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
           padding: 20,
           font: {
             size: 14,
-            weight: '500',
+            weight: 500,
           },
         },
       },
