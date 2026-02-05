@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Controls from './components/Controls';
 import Chart from './components/Chart';
 import { SimulationRequest, SimulationResponse } from './types';
