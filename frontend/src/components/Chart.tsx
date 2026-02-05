@@ -64,7 +64,6 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
 
   const { metadata, results } = data;
 
-  // Prepare chart data
   const labels = results.history.map((round) => round.round);
   const strategy1Data = results.history.map((round) => round.strategy1_cumulative);
   const strategy2Data = results.history.map((round) => round.strategy2_cumulative);
@@ -174,7 +173,6 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
     },
   };
 
-  // Calculate statistics
   const cooperationRate1 = (
     (results.history.filter((r) => r.strategy1_move === 'Cooperate').length /
       results.history.length) *
