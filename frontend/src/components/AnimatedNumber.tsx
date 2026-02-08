@@ -11,12 +11,12 @@ const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
   duration = 650,
   decimals = 0,
 }) => {
-  const [displayValue, setDisplayValue] = useState(value);
-  const previous = useRef(value);
+  const [displayValue, setDisplayValue] = useState(0);
+  const previous = useRef<number | null>(null);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const from = previous.current;
+    const from = previous.current ?? 0;
     const to = value;
     previous.current = value;
 
