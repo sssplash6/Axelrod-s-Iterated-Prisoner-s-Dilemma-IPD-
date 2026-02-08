@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field, validator
 from typing import List, Dict
 import uvicorn
 
-from game_logic import PrisonersDilemmaGame, STRATEGIES, get_available_strategies
+from game_logic import PrisonersDilemmaGame, STRATEGIES, get_available_strategies, get_strategy_metadata
 
 
 app = FastAPI(
@@ -83,7 +83,7 @@ async def root():
 @app.get("/api/strategies")
 async def get_strategies():
     """Get list of available strategies."""
-    strategies = get_available_strategies()
+    strategies = get_strategy_metadata()
     return {
         "strategies": strategies,
         "count": len(strategies)
