@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { SimulationResponse } from '../types';
+import AnimatedNumber from './AnimatedNumber';
 import './Chart.css';
 
 ChartJS.register(
@@ -173,20 +174,18 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
     },
   };
 
-  const cooperationRate1 = (
+  const cooperationRate1 =
     (results.history.filter((r) => r.strategy1_move === 'Cooperate').length /
       results.history.length) *
-    100
-  ).toFixed(1);
+    100;
 
-  const cooperationRate2 = (
+  const cooperationRate2 =
     (results.history.filter((r) => r.strategy2_move === 'Cooperate').length /
       results.history.length) *
-    100
-  ).toFixed(1);
+    100;
 
-  const avgScore1 = (results.strategy1_total_score / results.history.length).toFixed(2);
-  const avgScore2 = (results.strategy2_total_score / results.history.length).toFixed(2);
+  const avgScore1 = results.strategy1_total_score / results.history.length;
+  const avgScore2 = results.strategy2_total_score / results.history.length;
 
   const winner =
     results.strategy1_total_score > results.strategy2_total_score
@@ -200,7 +199,7 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
   const avgDiff = (absDiff / results.history.length).toFixed(2);
   const summary =
     winner === 'Tie'
-      ? `It's a tie. Both average ${avgScore1} points per round.`
+      ? `It's a tie. Both average ${avgScore1.toFixed(2)} points per round.`
       : `${winner} wins by ${absDiff} points (avg +${avgDiff}/round).`;
 
   return (
@@ -213,6 +212,7 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
       <div className="chart-wrapper">
         <Line ref={chartRef} data={chartData} options={options} />
       </div>
+      <div className="legend-hint">Tip: click a legend label to hide/show a line.</div>
 
       <div className="stats-grid">
         <div className="stat-card winner-card">
@@ -224,21 +224,25 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
 
         <div className="stat-card">
           <h3>{metadata.strategy1}</h3>
-          <div className="stat-value">{results.strategy1_total_score}</div>
+          <div className="stat-value">
+            <AnimatedNumber value={results.strategy1_total_score} />
+          </div>
           <div className="stat-detail">
-            Avg: {avgScore1} per round
+            Avg: <AnimatedNumber value={avgScore1} decimals={2} /> per round
             <br />
-            Cooperation: {cooperationRate1}%
+            Cooperation: <AnimatedNumber value={cooperationRate1} decimals={1} />%
           </div>
         </div>
 
         <div className="stat-card">
           <h3>{metadata.strategy2}</h3>
-          <div className="stat-value">{results.strategy2_total_score}</div>
+          <div className="stat-value">
+            <AnimatedNumber value={results.strategy2_total_score} />
+          </div>
           <div className="stat-detail">
-            Avg: {avgScore2} per round
+            Avg: <AnimatedNumber value={avgScore2} decimals={2} /> per round
             <br />
-            Cooperation: {cooperationRate2}%
+            Cooperation: <AnimatedNumber value={cooperationRate2} decimals={1} />%
           </div>
         </div>
       </div>
