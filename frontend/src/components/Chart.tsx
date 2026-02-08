@@ -195,8 +195,21 @@ const Chart: React.FC<ChartProps> = ({ data }) => {
       ? metadata.strategy2
       : 'Tie';
 
+  const scoreDiff = results.strategy1_total_score - results.strategy2_total_score;
+  const absDiff = Math.abs(scoreDiff);
+  const avgDiff = (absDiff / results.history.length).toFixed(2);
+  const summary =
+    winner === 'Tie'
+      ? `It's a tie. Both average ${avgScore1} points per round.`
+      : `${winner} wins by ${absDiff} points (avg +${avgDiff}/round).`;
+
   return (
     <div className="chart-container">
+      <div className="summary-banner">
+        <div className="summary-title">Result Snapshot</div>
+        <div className="summary-text">{summary}</div>
+      </div>
+
       <div className="chart-wrapper">
         <Line ref={chartRef} data={chartData} options={options} />
       </div>
