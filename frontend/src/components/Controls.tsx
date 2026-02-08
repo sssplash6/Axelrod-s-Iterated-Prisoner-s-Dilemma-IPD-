@@ -21,6 +21,33 @@ const Controls: React.FC<ControlsProps> = ({
     onRequestChange({ ...request, [field]: value });
   };
 
+  const roundsPercent = ((request.rounds - 10) / (1000 - 10)) * 100;
+  const noisePercent = request.noise * 100;
+
+  const presets = [
+    {
+      label: 'Nice vs Nasty',
+      strategy1: 'TitForTat',
+      strategy2: 'AlwaysDefect',
+      rounds: 200,
+      noise: 0.05,
+    },
+    {
+      label: 'Forgiving vs Unforgiving',
+      strategy1: 'TitForTat',
+      strategy2: 'GrimTrigger',
+      rounds: 200,
+      noise: 0.02,
+    },
+    {
+      label: 'Trusting Duel',
+      strategy1: 'AlwaysCooperate',
+      strategy2: 'TitForTat',
+      rounds: 200,
+      noise: 0.0,
+    },
+  ];
+
   return (
     <div className="controls">
       <h2>Simulation Controls</h2>
@@ -72,6 +99,11 @@ const Controls: React.FC<ControlsProps> = ({
           value={request.rounds}
           onChange={(e) => handleChange('rounds', parseInt(e.target.value))}
           disabled={isLoading}
+          style={
+            {
+              '--value': `${roundsPercent}%`,
+            } as React.CSSProperties
+          }
         />
         <div className="range-labels">
           <span>10</span>
@@ -92,10 +124,40 @@ const Controls: React.FC<ControlsProps> = ({
           value={request.noise}
           onChange={(e) => handleChange('noise', parseFloat(e.target.value))}
           disabled={isLoading}
+          style={
+            {
+              '--value': `${noisePercent}%`,
+            } as React.CSSProperties
+          }
         />
         <div className="range-labels">
           <span>0%</span>
           <span>100%</span>
+        </div>
+      </div>
+
+      <div className="preset-group" aria-label="Quick matchups">
+        <div className="preset-header">Quick matchups</div>
+        <div className="preset-row">
+          {presets.map((preset) => (
+            <button
+              key={preset.label}
+              type="button"
+              className="preset-chip"
+              onClick={() =>
+                onRequestChange({
+                  ...request,
+                  strategy1: preset.strategy1,
+                  strategy2: preset.strategy2,
+                  rounds: preset.rounds,
+                  noise: preset.noise,
+                })
+              }
+              disabled={isLoading}
+            >
+              {preset.label}
+            </button>
+          ))}
         </div>
       </div>
 
