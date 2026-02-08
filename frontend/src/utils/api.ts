@@ -1,15 +1,21 @@
-import { SimulationRequest, SimulationResponse } from '../types';
+import { SimulationRequest, SimulationResponse, Strategy } from '../types';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export const api = {
-  async getStrategies(): Promise<string[]> {
+  async getStrategies(): Promise<Strategy[]> {
     const response = await fetch(`${API_BASE_URL}/api/strategies`);
     if (!response.ok) {
       throw new Error('Failed to fetch strategies');
     }
     const data = await response.json();
-    return data.strategies;
+    if (Array.isArray(data.strategies)) {
+      if (typeof data.strategies[0] === 'string') {
+        return data.strategies.map((name: string) => ({ name }));
+      }
+      return data.strategies;
+    }
+    return [];
   },
 
   async runSimulation(request: SimulationRequest): Promise<SimulationResponse> {
