@@ -358,14 +358,3 @@ class PrisonersDilemmaGame:
 def get_available_strategies() -> List[str]:
     """Return list of available strategy names."""
     return list(STRATEGIES.keys())
-
-
-def get_strategy_metadata() -> List[Dict[str, str]]:
-    """Return list of strategies with descriptions for UI."""
-    return [
-        {
-            "name": name,
-            "description": strategy.description,
-        }
-        for name, strategy in STRATEGIES.items()
-    ]
